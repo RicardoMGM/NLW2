@@ -10,6 +10,7 @@ import './styles.css';
 interface PageHeaderProps {
     //Se colocar um "?" na frente do nome da variável ela não é abrigatória
     title: string;
+    description?: string;
 }
 
 //No React uma das melhores formas de passar parâmetor é tranformar a função em uma constante
@@ -26,6 +27,7 @@ const PageHeader: React.FunctionComponent<PageHeaderProps> = (props) => {
 
             <div className="header-content">
                 <strong>{props.title}</strong>
+                { props.description && <p>{ props.description}</p> }
                 
                 {props.children}
             </div>
