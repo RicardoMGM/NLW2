@@ -1,6 +1,8 @@
 import React from 'react';
 import PageHeader from '../../components/PageHeader';
 import './styles.css';
+import Input from '../../components/Input';
+import warningIcon from '../../assets/images/icons/warning.svg';
 
 function TeacherForm(){
     return (
@@ -13,22 +15,27 @@ function TeacherForm(){
             <main>
                 <fieldset>
                     <legend>Seus dados</legend>
-
-                    <div className="input-block">
-                        <label htmlFor="name">Nome Completo</label>
-                        <input type="text" id="name" />
-                    </div>
-
-                    <div className="input-block">
-                        <label htmlFor="avatar">Avatar</label>
-                        <input type="text" id="avatar" />
-                    </div>
-
-                    <div className="input-block">
-                        <label htmlFor="whatsapp">whatsApp</label>
-                        <input type="text" id="whatsapp" />
-                    </div>
+                    <Input name="name" label="Nome Completo"/>
+                    <Input name="avatar" label="Avatar"/>
+                    <Input name="whatsapp" label="whatsApp"/>
                 </fieldset>
+
+                <fieldset>
+                    <legend>Sobre a aula</legend>
+                    <Input name="subject" label="Nome Completo"/>
+                    <Input name="cost" label="Custo da sua hora por aula"/>
+                </fieldset>
+
+                <footer>
+                    <p>
+                        <img src={warningIcon} alt="Aviso importante" />
+                        Importante! <br/>
+                        Preencha todos os dados
+                    </p>
+                    <button type="button">
+                        Salvar cadastro
+                    </button>
+                </footer>
             </main>
         </div>
     )
