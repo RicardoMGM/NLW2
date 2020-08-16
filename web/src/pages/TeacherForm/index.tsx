@@ -1,4 +1,5 @@
 import React, {useState, FormEvent} from 'react';
+import { useHistory } from 'react-router-dom';
 import PageHeader from '../../components/PageHeader';
 import './styles.css';
 import Input from '../../components/Input';
@@ -8,6 +9,7 @@ import Select from '../../components/Select';
 import api from '../../services/api';
 
 function TeacherForm(){
+    const history = useHistory();
 
     const [name, setName] = useState('');
     const [avatar, setAvatar] = useState('');
@@ -18,17 +20,17 @@ function TeacherForm(){
     const [cost, setCost] = useState('');
     
     const [scheduleItens, setScheduleItens] = useState([
-        { weed_day: '', from: '', to: '' }
+        { weed_day: 0, from: '', to: '' }
     ]);
 
     function addNewScheduleItem() {
         setScheduleItens([
             ...scheduleItens,
-            { weed_day: '', from: '', to: '' }
+            { weed_day: 0, from: '', to: '' }
         ]);
     }
 
-    function setScheduleItemvalue(position: number, field: string, value: string) {
+    function setScheduleItemValue(position: number, field: string, value: string) {
         const updateScheduleItens = scheduleItens.map((scheduleItem, index) => {
             if(index === position) {
                 return { ...scheduleItem, [field]: value };
@@ -53,6 +55,7 @@ function TeacherForm(){
 
         }).then(() => {
             alert('Cadastro realizado com sucesso!');
+            history.push('/');
         }).catch(() => {
             alert('Erro no cadastro!');
         });
@@ -118,7 +121,7 @@ function TeacherForm(){
                                         name="week_day" 
                                         label="Dia da semana"
                                         value={scheduleItem.weed_day}
-                                        onChange={e => setScheduleItemvalue(index, 'week_day', e.target.value)}
+                                        onChange={e => setScheduleItemValue(index, 'week_day', e.target.value)}
                                         options={[
                                             {value: '0', label: 'Domingo'},
                                             {value: '1', label: 'Segunda-feira'},
@@ -131,10 +134,10 @@ function TeacherForm(){
                                     />
                                     <Input name="from" label="Das" type="time" 
                                         value={scheduleItem.from}
-                                        onChange={e => setScheduleItemvalue(index, 'from', e.target.value)} />
+                                        onChange={e => setScheduleItemValue(index, 'from', e.target.value)} />
                                     <Input name="to" label="Até" type="time"
                                         value={scheduleItem.to}
-                                        onChange={e => setScheduleItemvalue(index, 'to', e.target.value)} />
+                                        onChange={e => setScheduleItemValue(index, 'to', e.target.value)} />
                                 </div>
                             );
                         })}
