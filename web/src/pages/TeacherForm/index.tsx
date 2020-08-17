@@ -20,13 +20,13 @@ function TeacherForm(){
     const [cost, setCost] = useState('');
     
     const [scheduleItens, setScheduleItens] = useState([
-        { weed_day: 0, from: '', to: '' }
+        { week_day: '', from: '', to: '' }
     ]);
 
     function addNewScheduleItem() {
         setScheduleItens([
             ...scheduleItens,
-            { weed_day: 0, from: '', to: '' }
+            { week_day: '', from: '', to: '' }
         ]);
     }
 
@@ -116,11 +116,11 @@ function TeacherForm(){
 
                         {scheduleItens.map((scheduleItem, index) => {
                             return (
-                                <div key={scheduleItem.weed_day} className="schedule-item">
+                                <div key={scheduleItem.week_day} className="schedule-item">
                                     <Select 
                                         name="week_day" 
                                         label="Dia da semana"
-                                        value={scheduleItem.weed_day}
+                                        value={scheduleItem.week_day}
                                         onChange={e => setScheduleItemValue(index, 'week_day', e.target.value)}
                                         options={[
                                             {value: '0', label: 'Domingo'},
